@@ -11,8 +11,8 @@ interface Props {
 }
 
 export default async function AdminLayout({ children }: Props) {
-  const session = await getServerSession(authOptions);
-  if (session?.user?.code != 200) redirect("/auth/login");
+  // const session = await getServerSession(authOptions);
+  // if (session?.user?.code != 200) redirect("/auth/login");
   return (
     <>
       <LayoutContainer>
