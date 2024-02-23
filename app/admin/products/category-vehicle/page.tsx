@@ -18,7 +18,9 @@ const api_backend = process.env.NEXT_PUBLIC_APP_API_BACKEND;
 const CategoryVehicleContent = () => {
   const toast = useRef<any>(null);
   const [token] = useToken();
-  const [dataCategoryVehicle, setDataCategoryVehicle] = useState(null);
+  const [dataCategoryVehicle, setDataCategoryVehicle] = useState(
+    categoryVehicleDataDummy.data
+  );
   const [loading, setloading] = useState(true);
 
   const [categoryVehicleData, loadingCategoryVehicleData] =
@@ -28,12 +30,12 @@ const CategoryVehicleContent = () => {
   const [visibleEdit, setVisibleEdit] = useState(false);
   const [idSelected, setIdSelected] = useState<any>(null);
 
-  useEffect(() => {
-    if (categoryVehicleData && !loadingCategoryVehicleData) {
-      setDataCategoryVehicle(categoryVehicleData?.data);
-      setloading(false);
-    }
-  }, [categoryVehicleData, loadingCategoryVehicleData]);
+  // useEffect(() => {
+  //   if (categoryVehicleData && !loadingCategoryVehicleData) {
+  //     setDataCategoryVehicle(categoryVehicleData?.data);
+  //     setloading(false);
+  //   }
+  // }, [categoryVehicleData, loadingCategoryVehicleData]);
 
   const showToast = (data: any) => {
     toast.current.show({
@@ -146,6 +148,33 @@ const CategoryVehicleContent = () => {
       </CardAdmin>
     </>
   );
+};
+
+const categoryVehicleDataDummy = {
+  code: 200,
+  message: "Data has been listed",
+  data: [
+    {
+      product_type_id: "40a50fb9-e17f-499b-9d27-7fb96859a894",
+      product_type_name: "Light Truck 6 Ban",
+    },
+    {
+      product_type_id: "5642c397-4c16-4c56-ab6c-1b4af89fd6f3",
+      product_type_name: "Light Truck 4 Ban",
+    },
+    {
+      product_type_id: "770e26ba-b654-479b-b0d8-cd871011f7c0",
+      product_type_name: "Pick Up",
+    },
+    {
+      product_type_id: "96b15626-e012-4a29-b77d-378e8c3eb66e",
+      product_type_name: "Medium Truck",
+    },
+    {
+      product_type_id: "fc5ee3e0-1b33-444e-b1ff-3fbec756ecf8",
+      product_type_name: "Light Commercial Vehicle",
+    },
+  ],
 };
 
 export default CategoryVehicleContent;

@@ -19,7 +19,7 @@ const api_backend = process.env.NEXT_PUBLIC_APP_API_BACKEND;
 const ContentVehicleContent = () => {
   const toast = useRef<any>(null);
   const [token] = useToken();
-  const [dataContentVehicle, setDataContentVehicle] = useState(null);
+  const [dataContentVehicle, setDataContentVehicle] = useState(dummy.data);
   const [loading, setloading] = useState(true);
 
   const [contentVehicleData, loadingContentVehicleData] = useFetchUmum(
@@ -30,12 +30,12 @@ const ContentVehicleContent = () => {
   const [visibleEdit, setVisibleEdit] = useState(false);
   const [idSelected, setIdSelected] = useState<any>(null);
 
-  useEffect(() => {
-    if (contentVehicleData && !loadingContentVehicleData) {
-      setDataContentVehicle(contentVehicleData?.data);
-      setloading(false);
-    }
-  }, [contentVehicleData, loadingContentVehicleData]);
+  // useEffect(() => {
+  //   if (contentVehicleData && !loadingContentVehicleData) {
+  //     setDataContentVehicle(contentVehicleData?.data);
+  //     setloading(false);
+  //   }
+  // }, [contentVehicleData, loadingContentVehicleData]);
 
   const showToast = (data: any) => {
     toast.current.show({
@@ -106,7 +106,7 @@ const ContentVehicleContent = () => {
   const imageBodyImage = (rowData: any) => {
     return (
       <Image
-        src={rowData.image || "/no-image.png"}
+        src={`https://www.tmsisuzu.co.id/${rowData.image}` || "/no-image.png"}
         alt={rowData.image}
         layout="responsive"
         objectFit="cover"
@@ -175,6 +175,20 @@ const ContentVehicleContent = () => {
       </CardAdmin>
     </>
   );
+};
+
+const dummy = {
+  code: 200,
+  message: "Data has been listed",
+  data: [
+    {
+      product_content_id: "968531bc-fb86-43e3-bb27-06b040e2bd11",
+      product_id: "10cbbbe2-14fa-4f6a-ba63-70cd79352065",
+      text: "<p>ELF NLR</p>",
+      image: "/product/content/image/968531bc-fb86-43e3-bb27-06b040e2bd11.png",
+      position: "Text Left",
+    },
+  ],
 };
 
 export default ContentVehicleContent;

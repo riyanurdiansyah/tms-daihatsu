@@ -19,7 +19,7 @@ const api_backend = process.env.NEXT_PUBLIC_APP_API_BACKEND;
 const VehicleContent = () => {
   const toast = useRef<any>(null);
   const [token] = useToken();
-  const [dataVehicle, setDataVehicle] = useState(null);
+  const [dataVehicle, setDataVehicle] = useState<any>(vehicleDataDummy.data);
   const [loading, setloading] = useState(true);
 
   const [vehicleData, loadingVehicleData] = useFetchUmum("/api/product");
@@ -28,12 +28,12 @@ const VehicleContent = () => {
   const [visibleEdit, setVisibleEdit] = useState(false);
   const [idSelected, setIdSelected] = useState<any>(null);
 
-  useEffect(() => {
-    if (vehicleData && !loadingVehicleData) {
-      setDataVehicle(vehicleData?.data);
-      setloading(false);
-    }
-  }, [vehicleData, loadingVehicleData]);
+  // useEffect(() => {
+  //   if (vehicleDataDummy && !loadingVehicleData) {
+  //     setDataVehicle(vehicleData?.data);
+  //     setloading(false);
+  //   }
+  // }, [vehicleDataDummy, loadingVehicleData]);
 
   const showToast = (data: any) => {
     toast.current.show({
@@ -85,7 +85,7 @@ const VehicleContent = () => {
   const imageBodyVehicle = (rowData: any) => {
     return (
       <Image
-        src={rowData.image || "/no-image.png"}
+        src={`https://www.tmsisuzu.co.id/${rowData.image}` || "/no-image.png"}
         alt={rowData.image}
         layout="responsive"
         objectFit="cover"
@@ -105,7 +105,9 @@ const VehicleContent = () => {
   const imageBodyBg = (rowData: any) => {
     return (
       <Image
-        src={rowData.image_bg || "/no-image.png"}
+        src={
+          `https://www.tmsisuzu.co.id/${rowData.image_bg}` || "/no-image.png"
+        }
         alt={rowData.image_bg}
         layout="responsive"
         objectFit="cover"
@@ -190,6 +192,67 @@ const VehicleContent = () => {
       </CardAdmin>
     </>
   );
+};
+
+const vehicleDataDummy = {
+  code: 200,
+  message: "Data has been listed",
+  data: [
+    {
+      image: "/product/image/10cbbbe2-14fa-4f6a-ba63-70cd79352065.png",
+      image_bg: "/product/imagebg/10cbbbe2-14fa-4f6a-ba63-70cd79352065.png",
+      name: "ELF NLR",
+      product_id: "10cbbbe2-14fa-4f6a-ba63-70cd79352065",
+      cabin: "2987",
+      gvw: "5100",
+      max_power: "100",
+      max_torque: "22.5",
+      product_type: {
+        product_type_id: "5642c397-4c16-4c56-ab6c-1b4af89fd6f3",
+        product_type_name: "Light Truck 4 Ban",
+      },
+      contents: [
+        {
+          product_content_id: "968531bc-fb86-43e3-bb27-06b040e2bd11",
+          product_id: "10cbbbe2-14fa-4f6a-ba63-70cd79352065",
+          text: "<p>ELF NLR</p>",
+          image:
+            "/product/content/image/968531bc-fb86-43e3-bb27-06b040e2bd11.png",
+          position: "Text Left",
+        },
+      ],
+    },
+    {
+      image: "/product/image/171cdc7b-990e-4a98-aa99-d350de39f311.png",
+      image_bg: "/product/imagebg/171cdc7b-990e-4a98-aa99-d350de39f311.png",
+      name: "GIGA FVR L D",
+      product_id: "171cdc7b-990e-4a98-aa99-d350de39f311",
+      cabin: "-",
+      gvw: "16000",
+      max_power: "245",
+      max_torque: "80.5",
+      product_type: {
+        product_type_id: "96b15626-e012-4a29-b77d-378e8c3eb66e",
+        product_type_name: "Medium Truck",
+      },
+      contents: [],
+    },
+    {
+      image: "/product/image/1d38b402-c987-4b3d-8229-1f6244398b95.png",
+      image_bg: "/product/imagebg/1d38b402-c987-4b3d-8229-1f6244398b95.png",
+      name: "ELF NLR 55 B LX Microbus KTP (STD)",
+      product_id: "1d38b402-c987-4b3d-8229-1f6244398b95",
+      cabin: "-",
+      gvw: "5100",
+      max_power: "100",
+      max_torque: "22.5",
+      product_type: {
+        product_type_id: "5642c397-4c16-4c56-ab6c-1b4af89fd6f3",
+        product_type_name: "Light Truck 4 Ban",
+      },
+      contents: [],
+    },
+  ],
 };
 
 export default VehicleContent;
