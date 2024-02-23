@@ -32,13 +32,13 @@ const Sidebar = () => {
   return (
     <SidebarLayout>
       <SidebarHeader>
-        <Image
+        {/* <Image
           src={LogoTMS}
           alt=""
           loading="lazy"
           onClick={() => router.push("/admin")}
           style={{ maxWidth: "100%", height: "auto", maxHeight: "35px" }}
-        />
+        /> */}
       </SidebarHeader>
       <MenuContainer>
         <ParentListMenu>

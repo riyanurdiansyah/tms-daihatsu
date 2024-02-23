@@ -3,7 +3,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 export const color = {
-  main: "red",
+  main: "#3F79BD",
   secondary: "#e7cccc",
   fh: "#262626",
   fr: "#717276",

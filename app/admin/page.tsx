@@ -7,13 +7,13 @@ const AdminPage = () => {
   return (
     <CardWelcome>
       <TitleAdmin>Welcome to Admin Panel</TitleAdmin>
-      <Image
+      {/* <Image
         src={ImgColab}
         alt=""
         layout="responsive"
         objectFit="contain"
         style={{ width: "80%", maxWidth: "200px", height: "auto" }}
-      />
+      /> */}
     </CardWelcome>
   );
 };
